@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    #todo-container {
+      margin-top: 20px;
+    }
+
+    li {
+      margin: 8px 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+      background: #f0f0f0;
+      border-radius: 5px;
+    }
+
+    button {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background: darkred;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>📝 To-Do List</h2>
+
+  <input type="text" id="todoInput" placeholder="Enter a task" />
+  <button id="addBtn">Add Task</button>
+
+  <ul id="todoList"></ul>
+
+  <script>
+    // DOM Elements
+    let input = document.getElementById("todoInput");
+    let addBtn = document.getElementById("addBtn");
+    let list = document.getElementById("todoList");
+
+    // Add item function
+    addBtn.addEventListener("click", function() {
+      let task = input.value.trim();
+
+      if (task === "") {
+        alert("Please enter a task!");
+        return;
+      }
+
+      // Create <li>
+      let li = document.createElement("li");
+      li.textContent = task;
+
+      // Create delete button
+      let deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+
+      // Delete handler
+      deleteBtn.addEventListener("click", function() {
+        list.removeChild(li);
+      });
+
+      // Add button to list item
+      li.appendChild(deleteBtn);
+
+      // Add <li> to <ul>
+      list.appendChild(li);
+
+      // Clear input box
+      input.value = "";
+    });
+  </script>
+
+</body>
+</html>
